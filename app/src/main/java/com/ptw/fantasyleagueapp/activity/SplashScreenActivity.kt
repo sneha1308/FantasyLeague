@@ -1,8 +1,9 @@
-package com.ptw.fantasyleagueapp
+package com.ptw.fantasyleagueapp.activity
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.ptw.fantasyleagueapp.R
 
 
 class SplashScreenActivity : AppCompatActivity() {

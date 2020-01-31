@@ -6,7 +6,7 @@
         android:layout_height="match_parent">
 
     <androidx.viewpager.widget.ViewPager
-            android:id="@+id/container"
+            android:id="@+id/mViewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="?attr/actionBarSize"/>
@@ -52,59 +52,35 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/indicator_unselected"/>
-        <!-- Your other 2 indicators here -->
-
-
     </LinearLayout>
-
-    <!-- divider -->
-    <!-- <View
-             android:layout_width="match_parent"
-             android:layout_height="1dp"
-             android:layout_gravity="bottom"
-             app:layout_constraintBottom_toTopOf="@+id/flSkip"
-             android:layout_marginBottom="?attr/actionBarSize"
-             android:alpha="0.12"
-             android:background="@android:color/white"/>
- -->
     <FrameLayout
             android:id="@+id/flSkip"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_gravity="bottom"
-            android:padding="8dp">
+            android:padding="@dimen/_8sdp">
 
-        <TextView
+        <com.ptw.fantasyleagueapp.ui.CustomTextView
+                style="@style/TxtHeaderRegularStyle"
                 android:id="@+id/intro_btn_skip"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_gravity="start|center"
-                android:text="Skip"
-                android:textColor="@color/colorPrimary"/>
+                android:text="Skip"/>
 
 
-        <!-- This overlaps the next button in the last slide -->
-        <TextView
+        <com.ptw.fantasyleagueapp.ui.CustomTextView
+                style="@style/TxtHeaderRegularStyle"
                 android:id="@+id/intro_btn_finish"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_gravity="end|center"
                 android:text="Finish"
-                android:textColor="@color/colorPrimary"
                 android:visibility="gone"/>
 
 
-        <TextView
+        <com.ptw.fantasyleagueapp.ui.CustomTextView
+                style="@style/TxtHeaderRegularStyle"
                 android:id="@+id/intro_btn_next"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_gravity="end|center"
-                android:text="Next"
-                android:textColor="@color/colorPrimary"/>
+                android:text="Next"/>
 
     </FrameLayout>
 
