@@ -8,4 +8,51 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="NormalText" parent="AppTheme">
+        <item name="fontFamily">@string/Roboto_Regular_font</item>
+        <item name="fontFamilyType">@string/Myriad_font_family</item>
+    </style>
+
+    <style name="BoldText" parent="AppTheme">
+        <item name="fontFamily">@string/Roboto_Bold_font</item>
+        <item name="fontFamilyType">@string/Myriad_font_family</item>
+    </style>
+
+    <style name="TxtHeaderBoldStyle" parent="@android:style/Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTxtTitle</item>
+        <item name="android:textSize">@dimen/_11sdp</item>
+        <item name="android:layout_margin">@dimen/_1sdp</item>
+        <item name="fontFamily">@string/Roboto_Bold_font</item>
+        <item name="fontFamilyType">@string/Myriad_font_family</item>
+    </style>
+
+    <style name="TxtHeaderRegularStyle" parent="@android:style/Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTxtTitle</item>
+        <item name="android:textSize">@dimen/_11sdp</item>
+        <item name="android:layout_margin">@dimen/_1sdp</item>
+        <item name="fontFamily">@string/Roboto_Regular_font</item>
+        <item name="fontFamilyType">@string/Myriad_font_family</item>
+    </style>
+
+    <style name="TxtSubRegularStyle" parent="@android:style/Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTxtSubtitle</item>
+        <item name="android:textSize">@dimen/_9sdp</item>
+        <item name="android:layout_margin">@dimen/_1sdp</item>
+        <item name="fontFamily">@string/Roboto_Light_font</item>
+        <item name="fontFamilyType">@string/Myriad_font_family</item>
+    </style>
+
 </resources>

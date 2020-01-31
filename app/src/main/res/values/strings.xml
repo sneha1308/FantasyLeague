@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FantasyLeagueApp</string>
+    <string name="fantasy_league">Fantasy League</string>
+    <string name="Myriad_font_family">ttf</string>
+    <string name="Roboto_Bold_font">Roboto-Bold</string>
+    <string name="Roboto_Light_font">Roboto-Light</string>
+    <string name="Roboto_Regular_font">Roboto-Regular</string>
 </resources>
