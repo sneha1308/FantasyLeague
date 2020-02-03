@@ -18,6 +18,7 @@ class SplashScreenActivity : AppCompatActivity() {
                     startActivity(i)
                     finish()
                 } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             }
         }

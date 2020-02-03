@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorTxtTitle"
+        android:elevation="@dimen/_5sdp"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp"
+        app:layout_scrollFlags="scroll|enterAlways">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <com.ptw.fantasyleagueapp.ui.CustomTextView
+                style="@style/TxtHeaderRegularStyle"
+                android:id="@+id/intro_btn_skip"
+                android:layout_gravity="center"
+                android:text="@string/about"
+                android:textColor="@color/colorWhite"
+                android:textAllCaps="true"/>
+
+    </FrameLayout>
+</androidx.appcompat.widget.Toolbar>

@@ -5,4 +5,5 @@
     <string name="Roboto_Bold_font">Roboto-Bold</string>
     <string name="Roboto_Light_font">Roboto-Light</string>
     <string name="Roboto_Regular_font">Roboto-Regular</string>
+    <string name="about">About</string>
 </resources>
