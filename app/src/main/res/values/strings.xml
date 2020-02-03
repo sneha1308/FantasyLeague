@@ -7,5 +7,9 @@
     <string name="Roboto_Regular_font">Roboto-Regular</string>
     <string name="about">About</string>
     <string name="aboutTitle1">Make your \n Fantasy Team</string>
-    <string name="aboutInfo1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="aboutInfo1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua.
+    </string>
+    <string name="facebook">Login with facebook</string>
+    <string name="google">Login with Google</string>
 </resources>
