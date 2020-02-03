@@ -69,8 +69,12 @@
         <com.ptw.fantasyleagueapp.ui.CustomTextView
                 style="@style/TxtHeaderRegularStyle"
                 android:id="@+id/intro_btn_skip"
+                android:layout_height="match_parent"
+                android:layout_width="@dimen/_100sdp"
                 android:layout_gravity="start|center"
-                android:text="Skip"/>
+                android:gravity="center"
+                android:text="Skip"
+                android:background="@drawable/button_boder"/>
 
 
         <com.ptw.fantasyleagueapp.ui.CustomTextView
@@ -84,8 +88,13 @@
         <com.ptw.fantasyleagueapp.ui.CustomTextView
                 style="@style/TxtHeaderRegularStyle"
                 android:id="@+id/intro_btn_next"
+                android:layout_height="match_parent"
+                android:layout_width="@dimen/_100sdp"
                 android:layout_gravity="end|center"
-                android:text="Next"/>
+                android:gravity="center"
+                android:text="Next"
+                android:background="@drawable/button_fill"
+                android:textColor="@color/colorWhite"/>
 
     </FrameLayout>
 
