@@ -1,7 +1,6 @@
 package com.ptw.fantasyleagueapp.activity
 
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
@@ -27,8 +26,10 @@ class MainActivity : AppCompatActivity() {
         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
+
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
             }
+
             override fun onPageSelected(position: Int) {
                 page = position;
                 updateIndicators(page);
@@ -42,18 +43,29 @@ class MainActivity : AppCompatActivity() {
                     3 ->
                         mViewPager.currentItem
                 }
-                intro_btn_next.visibility = if (position == 3) View.GONE else View.VISIBLE
-                intro_btn_finish.visibility = if (position == 3) View.VISIBLE else View.GONE
+                if (position == 3) {
+                    intro_btn_next.text = ("FINISH")
+                } else {
+                    intro_btn_next.text = ("Next")
+                }
             }
         })
         intro_btn_next.setOnClickListener {
-            page += 1
-            mViewPager.setCurrentItem(page, true)
+            if (page == 3) {
+                finish()
+            } else {
+                page += 1
+                mViewPager.setCurrentItem(page, true)
+            }
+
         }
-        intro_btn_skip.setOnClickListener { finish() }
-        intro_btn_finish.setOnClickListener {
+        intro_btn_skip.setOnClickListener {
             finish()
         }
+        /*intro_btn_finish.setOnClickListener {
+            finish()
+        }*/
+
     }
 
     private fun updateIndicators(position: Int) {
