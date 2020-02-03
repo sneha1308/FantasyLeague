@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">FantasyLeagueApp</string>
+    <!--Facebook -->
+    <string name="facebook_app_id">581865875995110</string>
+    <string name="fb_login_protocol_scheme">fb581865875995110</string>
+
     <string name="fantasy_league">Fantasy League</string>
     <string name="Myriad_font_family">ttf</string>
     <string name="Roboto_Bold_font">Roboto-Bold</string>
