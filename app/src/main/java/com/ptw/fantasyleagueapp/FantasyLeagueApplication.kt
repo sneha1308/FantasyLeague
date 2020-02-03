@@ -1,7 +1,6 @@
 package com.ptw.fantasyleagueapp
 
 import android.app.Application
-
 class FantasyLeagueApplication : Application() {
     companion object {
         @Volatile
