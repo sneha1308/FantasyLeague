@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager
 import com.ptw.fantasyleagueapp.R
 import com.ptw.fantasyleagueapp.adapter.SectionsPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_toolbar.view.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(includeLayout.toolbar)
         val mSectionsPagerAdapter = SectionsPagerAdapter(getSupportFragmentManager());
         indicators = arrayOf(intro_indicator_0, intro_indicator_1, intro_indicator_2, intro_indicator_3)
         mViewPager.adapter = mSectionsPagerAdapter
