@@ -3,6 +3,7 @@
     <!--Facebook -->
     <string name="facebook_app_id">581865875995110</string>
     <string name="fb_login_protocol_scheme">fb581865875995110</string>
+    <string name="googleAPIKey">AIzaSyCWL04vB3qhLdiHAbE9hgw3EtyW9q0A6lM</string>
 
     <string name="fantasy_league">Fantasy League</string>
     <string name="Myriad_font_family">ttf</string>

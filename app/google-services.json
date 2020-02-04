@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "963494167490",
+    "firebase_url": "https://ptwtesting.firebaseio.com",
+    "project_id": "ptwtesting",
+    "storage_bucket": "ptwtesting.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963494167490:android:553236060b266d6db40c5b",
+        "android_client_info": {
+          "package_name": "com.ptw.fantasyleagueapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963494167490-43b7nrg5gmmkfitmujd631l5tv9edusv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ptw.fantasyleagueapp",
+            "certificate_hash": "19fe3144dd0c7f360c6cadb25e9348da4e1a050a"
+          }
+        },
+        {
+          "client_id": "963494167490-8hhnp4uher5plji813pdoevrkmffducc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWL04vB3qhLdiHAbE9hgw3EtyW9q0A6lM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963494167490-8hhnp4uher5plji813pdoevrkmffducc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
