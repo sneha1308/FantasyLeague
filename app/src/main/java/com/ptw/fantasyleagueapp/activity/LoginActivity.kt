@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        val account = GoogleSignIn.getLastSignedInAccount(this)
+//        val account = GoogleSignIn.getLastSignedInAccount(this)
         layFacebookLogin.setOnClickListener {
             LoginManager.getInstance()
                 .logInWithReadPermissions(this, Arrays.asList("email", "public_profile"))
@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
             LoginManager.getInstance().registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult?> {
                     override fun onSuccess(loginResult: LoginResult?) {
-                        Log.e(TAG, "Facebook Token ${loginResult!!.accessToken}")
+                        Log.e(TAG, "Facebook Token ${loginResult!!.accessToken.token}")
                     }
 
                     override fun onCancel() {
@@ -69,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             Log.e(TAG, "Gmail Token ${account!!.idToken}")
+            openAbout()
         } catch (e: ApiException) {
             e.printStackTrace()
         }
@@ -81,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode === RC_SIGN_IN) {
+        if (requestCode == RC_SIGN_IN) {
             val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
         } else {
