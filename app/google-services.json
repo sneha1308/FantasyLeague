@@ -15,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "963494167490-43b7nrg5gmmkfitmujd631l5tv9edusv.apps.googleusercontent.com",
+          "client_id": "963494167490-jeqdj65803e34fheudhjedcl1qobhpma.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ptw.fantasyleagueapp",
+            "certificate_hash": "40d6de53de7b03920a0fb692cf4b6772e09d73c1"
+          }
+        },
+        {
+          "client_id": "963494167490-1nbqemkvvu07ugt377j11dtgd1sd0bno.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.ptw.fantasyleagueapp",
