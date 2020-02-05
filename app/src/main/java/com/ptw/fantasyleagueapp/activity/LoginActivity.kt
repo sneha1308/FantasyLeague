@@ -3,6 +3,7 @@ package com.ptw.fantasyleagueapp.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private val callbackManager = CallbackManager.Factory.create();
     private val TAG = LoginActivity::class.java.name
     lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -32,32 +33,12 @@ class LoginActivity : AppCompatActivity() {
             .requestIdToken("963494167490-pn80ioe46dirnelsa66np7c3h5ngi277.apps.googleusercontent.com")
             .requestEmail()
             .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+
 //        val account = GoogleSignIn.getLastSignedInAccount(this)
-        layFacebookLogin.setOnClickListener {
-            LoginManager.getInstance()
-                .logInWithReadPermissions(this, Arrays.asList("email", "public_profile"))
-            LoginManager.getInstance().logInWithPublishPermissions(this, Arrays.asList("publish_actions"))
-            LoginManager.getInstance().registerCallback(callbackManager,
-                object : FacebookCallback<LoginResult?> {
-                    override fun onSuccess(loginResult: LoginResult?) {
-                        Log.e(TAG, "Facebook Token ${loginResult!!.accessToken.token}")
-                    }
-
-                    override fun onCancel() {
-                        Log.e(TAG, "onCancel")
-                    }
-
-                    override fun onError(exception: FacebookException) {
-                        Log.e(TAG, "Exception $exception \n\n")
-                        exception.printStackTrace()
-                    }
-                })
-        }
-        layGoogle.setOnClickListener {
-            signIn();
-//            openAbout()
-        }
+        layFacebookLogin.setOnClickListener(this)
+        layGoogle.setOnClickListener(this)
     }
 
     private fun signIn() {
@@ -89,4 +70,45 @@ class LoginActivity : AppCompatActivity() {
             callbackManager.onActivityResult(requestCode, resultCode, data)
         }
     }
+
+    /*This method is called to access the facebook token and do the operations based on the status */
+    private fun registerThroughLoginManager() {
+        //val accessToken = AccessToken.getCurrentAccessToken()
+        //   val isLoggedIn = accessToken != null && !accessToken.isExpired
+
+        LoginManager.getInstance().registerCallback(callbackManager,
+            object : FacebookCallback<LoginResult?> {
+                override fun onSuccess(loginResult: LoginResult?) {
+                    Log.e(TAG, "Facebook Token ${loginResult!!.accessToken.token}")
+                }
+
+                override fun onCancel() {
+                    Log.e(TAG, "onCancel")
+                }
+
+                override fun onError(exception: FacebookException) {
+                    Log.e(TAG, "Exception $exception \n\n")
+                    exception.printStackTrace()
+                }
+            })
+    }
+
+    override fun onClick(view: View?) {
+        when (view?.id) {
+            R.id.layFacebookLogin -> {
+                LoginManager.getInstance()
+                    .logInWithReadPermissions(this, Arrays.asList("email", "public_profile"))
+                LoginManager.getInstance().logInWithPublishPermissions(this, Arrays.asList("publish_actions"))
+                registerThroughLoginManager()
+            }
+
+            R.id.layGoogle -> {
+                signIn();
+//            openAbout()
+            }
+        }
+
+
+    }
+
 }
