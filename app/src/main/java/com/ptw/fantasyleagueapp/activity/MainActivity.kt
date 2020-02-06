@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
+import com.facebook.login.LoginManager
 import com.ptw.fantasyleagueapp.R
 import com.ptw.fantasyleagueapp.adapter.SectionsPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -76,6 +77,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        LoginManager.getInstance().logOut();
+    }
 
 }
 

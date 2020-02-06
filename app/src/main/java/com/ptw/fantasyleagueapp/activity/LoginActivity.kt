@@ -80,8 +80,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, GoogleApiClient
         } catch (e: PackageManager.NameNotFoundException) {
         } catch (e: NoSuchAlgorithmException) {
         }
-
-//        val account = GoogleSignIn.getLastSignedInAccount(this)
         layFacebookLogin.setOnClickListener(this)
         layGoogle.setOnClickListener(this)
     }
@@ -93,16 +91,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, GoogleApiClient
         val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleAPISignInClient)
         startActivityForResult(signInIntent, RC_SIGN_IN)
 
-    }
-
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val account = completedTask.getResult(ApiException::class.java)
-            Log.e(TAG, "Gmail Token ${account!!.idToken}")
-            openAbout()
-        } catch (e: ApiException) {
-            e.printStackTrace()
-        }
     }
 
     private fun openAbout() {
@@ -206,18 +194,16 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, GoogleApiClient
                 val accessToken = AccessToken.getCurrentAccessToken()
                 val isLoggedIn = accessToken != null && !accessToken.isExpired
                 if (!isLoggedIn) {
-                    LoginManager.getInstance()
-                        .logInWithReadPermissions(this, Arrays.asList("email", "public_profile"))
-                    // LoginManager.getInstance().logInWithPublishPermissions(this, Arrays.asList("publish_actions"))
+                    LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email", "public_profile"))
                     registerThroughLoginManager()
                 } else {
-                    Log.e(TAG, "Facebook Token Success ${accessToken}")
+                    Log.e(TAG, "Facebook Token Success ${accessToken.token}")
+                    startActivity(Intent(this,MainActivity::class.java))
                 }
             }
 
             R.id.layGoogle -> {
                 signIn();
-//            openAbout()
             }
         }
 
