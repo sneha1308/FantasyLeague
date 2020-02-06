@@ -87,7 +87,7 @@
                     android:gravity="center"
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_10sdp"
-                    android:text="Skip"
+                    android:text="SKIP"
                     android:layout_marginEnd="@dimen/_2sdp"
                     android:background="@drawable/button_border"/>
 
@@ -100,7 +100,7 @@
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_10sdp"
                     android:layout_marginLeft="@dimen/_2sdp"
-                    android:text="Next"
+                    android:text="NEXT"
                     android:background="@drawable/button_fill"
                     android:textColor="@color/colorWhite"/>
         </LinearLayout>
