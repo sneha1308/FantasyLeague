@@ -5,15 +5,14 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class RetrofitAPIConfig {
+class NetworkHandler {
+
     companion object {
         @Volatile
-        private var instance: RetrofitAPIConfig? = null
+        private var instance: NetworkHandler? = null
 
-        fun getInstance() = instance
-            ?: synchronized(this) {
-            instance
-                ?: RetrofitAPIConfig().also { instance = it }
+        fun getInstance() = instance ?: synchronized(this) { instance ?: NetworkHandler().also {
+                    instance = it }
         }
     }
         private lateinit var retrofit: Retrofit
@@ -22,6 +21,7 @@ class RetrofitAPIConfig {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(ScalarsConverterFactory.create())
             .baseUrl(BaseURL)
+
         private fun <S> create(serviceClass: Class<S>): S {
             retrofit = builder.build()
             return retrofit.create(serviceClass)

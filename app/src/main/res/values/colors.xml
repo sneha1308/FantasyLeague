@@ -6,4 +6,5 @@
     <color name="colorTxtTitle">#2196F3</color>
     <color name="colorTxtSubtitle">#41A0EB</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorPrimaryLight">#b3d9f7</color>
 </resources>

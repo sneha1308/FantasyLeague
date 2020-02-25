@@ -7,22 +7,23 @@ import androidx.viewpager.widget.ViewPager
 import com.facebook.login.LoginManager
 import com.ptw.fantasyleagueapp.R
 import com.ptw.fantasyleagueapp.adapter.SectionsPagerAdapter
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_tour.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 
 
-class MainActivity : AppCompatActivity() {
+class TourActivity : AppCompatActivity() {
     var indicators: Array<ImageView>? = null
     private var page: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_tour)
         setSupportActionBar(includeLayout.toolbar)
         val mSectionsPagerAdapter = SectionsPagerAdapter(getSupportFragmentManager());
         indicators = arrayOf(intro_indicator_0, intro_indicator_1, intro_indicator_2, intro_indicator_3)
         mViewPager.adapter = mSectionsPagerAdapter
         mViewPager.currentItem = page
+
         updateIndicators(page)
         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {

@@ -7,7 +7,8 @@
     <string name="googleAPIKey">AIzaSyCWL04vB3qhLdiHAbE9hgw3EtyW9q0A6lM</string>
 
     <!--Google -->
-    <string name="web_application_client_id">963494167490-pn80ioe46dirnelsa66np7c3h5ngi277.apps.googleusercontent.com</string>
+    <string name="web_application_client_id">963494167490-pn80ioe46dirnelsa66np7c3h5ngi277.apps.googleusercontent.com
+    </string>
     <string name="web_application_client_secret">7YwT69gx9R7dPNqOl6vQyjql</string>
 
     <string name="fantasy_league">Fantasy League</string>

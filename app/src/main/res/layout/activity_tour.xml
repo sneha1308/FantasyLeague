@@ -14,7 +14,7 @@
             android:id="@+id/mViewPager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_24sdp"
             app:layout_constraintTop_toBottomOf="@+id/includeLayout"
             app:layout_constraintBottom_toTopOf="@+id/llIndicators"
             android:paddingBottom="?attr/actionBarSize"/>

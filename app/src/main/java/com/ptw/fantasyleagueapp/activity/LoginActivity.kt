@@ -15,17 +15,18 @@ import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignInResult
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 import com.ptw.fantasyleagueapp.R
+import com.ptw.fantasyleagueapp.backEndHandler.apiHandler.APIType
+import com.ptw.fantasyleagueapp.backEndHandler.apiHandler.FantasyLeagueExecutor
+import com.ptw.fantasyleagueapp.backEndHandler.interfaceClass.IWebAPIResponse
+import com.ptw.fantasyleagueapp.dataModel.LoginDataModel
 import com.squareup.okhttp.*
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONException
@@ -36,13 +37,14 @@ import java.security.NoSuchAlgorithmException
 import java.util.*
 
 
-class LoginActivity : AppCompatActivity(), View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+class LoginActivity : AppCompatActivity(), View.OnClickListener, GoogleApiClient.OnConnectionFailedListener,
+    IWebAPIResponse {
 
     private val TAG = LoginActivity::class.java.name
     lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var callbackManager: CallbackManager
     private lateinit var mGoogleAPISignInClient: GoogleApiClient
-
+    private lateinit var fantasyLeagueExecutor: FantasyLeagueExecutor
 
     private val RC_SIGN_IN = 100
     private lateinit var firebaseAuth: FirebaseAuth
@@ -50,6 +52,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, GoogleApiClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        fantasyLeagueExecutor = FantasyLeagueExecutor(this)
 
         // firebaseAuth = FirebaseAuth.getInstance()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -85,7 +89,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, GoogleApiClient
     }
 
     private fun signIn() {
-
         if (mGoogleAPISignInClient.isConnected)
             Auth.GoogleSignInApi.signOut(mGoogleAPISignInClient);
         val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleAPISignInClient)
@@ -94,7 +97,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, GoogleApiClient
     }
 
     private fun openAbout() {
-        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        startActivity(Intent(this@LoginActivity, TourActivity::class.java))
         finish()
     }
 
@@ -155,25 +158,28 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, GoogleApiClient
         }
     }
 
-    private fun firebaseAuthWithGoogle(acct: String) {
-       /* val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-        val token = acct.idToken*/
-
+    private fun firebaseAuthWithGoogle(acct: String?) {
+        /* val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+         val token = acct.idToken*/
         if (acct != null) {
-            startActivity(Intent(this,MainActivity::class.java))
-            // acct?.let { it1 -> socialAuthentication(it1, "google-oauth2") }
-        } 
+            // startActivity(Intent(this, TourActivity::class.java))
+            acct.let { it1 -> fantasyLeagueExecutor.callAPI(APIType.UserLogin, it1, "google") }
+        }
+
     }
 
     /*This method is called to access the facebook token and do the operations based on the status */
     private fun registerThroughLoginManager() {
-        //val accessToken = AccessToken.getCurrentAccessToken()
-        //   val isLoggedIn = accessToken != null && !accessToken.isExpired
-
+        val accessToken = AccessToken.getCurrentAccessToken()
+        val isLoggedIn = accessToken != null && !accessToken.isExpired
+        //  val accessToken = AccessToken.getCurrentAccessToken()
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult?> {
                 override fun onSuccess(loginResult: LoginResult?) {
+
+
                     Log.e(TAG, "Facebook Token ${loginResult!!.accessToken.token}")
+                    facebookSuccess()
                 }
 
                 override fun onCancel() {
@@ -187,6 +193,19 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, GoogleApiClient
             })
     }
 
+    /*This method is called when the callback is success and
+    send the access token to server and navigates to MainActivity(Dashboard screen)*/
+    fun facebookSuccess() {
+        //loader.show()
+        val accessToken = AccessToken.getCurrentAccessToken()
+        val isLoggedIn = accessToken != null && !accessToken.isExpired
+
+        if (isLoggedIn) {
+            accessToken?.let { it1 -> fantasyLeagueExecutor.callAPI(APIType.UserLogin, it1.token, "facebook") }
+        } else {
+            Toast.makeText(this, "Facebook login failed!", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onClick(view: View?) {
         when (view?.id) {
@@ -198,20 +217,37 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, GoogleApiClient
                     registerThroughLoginManager()
                 } else {
                     Log.e(TAG, "Facebook Token Success ${accessToken.token}")
-                    startActivity(Intent(this,MainActivity::class.java))
+                    startActivity(Intent(this, TourActivity::class.java))
                 }
             }
-
             R.id.layGoogle -> {
                 signIn();
+            }
+        }
+    }
+
+    override fun onConnectionFailed(p0: ConnectionResult) {
+        Toast.makeText(this, "Google Login Failed!", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onSuccess(response: Any, type: APIType) {
+        when (type) {
+            APIType.UserLogin -> {
+                val data = response as LoginDataModel?
+                val result = data?.result
+                Log.e("loginResult", result.toString())
+                startActivity(Intent(this, TourActivity::class.java))
+            }
+            else -> {
+                Toast.makeText(this, "Network response failed", Toast.LENGTH_SHORT).show()
             }
         }
 
 
     }
 
-    override fun onConnectionFailed(p0: ConnectionResult) {
-        Toast.makeText(this, "Google Login Failed!", Toast.LENGTH_SHORT).show()
+    override fun onFailure(errorTxt: String) {
+        Toast.makeText(this, errorTxt, Toast.LENGTH_SHORT).show()
     }
 
 }
